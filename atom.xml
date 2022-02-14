@@ -6,7 +6,7 @@
   <link href="https://blog.limit-dancer.com/atom.xml" rel="self"/>
   
   <link href="https://blog.limit-dancer.com/"/>
-  <updated>2022-02-14T05:16:00.634Z</updated>
+  <updated>2022-02-14T07:49:32.730Z</updated>
   <id>https://blog.limit-dancer.com/</id>
   
   <author>
@@ -17,50 +17,20 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>two</title>
-    <link href="https://blog.limit-dancer.com/2022/02/14/two/"/>
-    <id>https://blog.limit-dancer.com/2022/02/14/two/</id>
-    <published>2022-02-14T05:16:00.000Z</published>
-    <updated>2022-02-14T05:16:00.634Z</updated>
+    <title>automapper</title>
+    <link href="https://blog.limit-dancer.com/2022/02/14/automapper/"/>
+    <id>https://blog.limit-dancer.com/2022/02/14/automapper/</id>
+    <published>2022-02-14T06:50:17.000Z</published>
+    <updated>2022-02-14T07:49:32.730Z</updated>
     
     
     
     
+    <category term=".Net Core" scheme="https://blog.limit-dancer.com/categories/Net-Core/"/>
     
-  </entry>
-  
-  <entry>
-    <title>one</title>
-    <link href="https://blog.limit-dancer.com/2022/02/14/one/"/>
-    <id>https://blog.limit-dancer.com/2022/02/14/one/</id>
-    <published>2022-02-14T05:15:53.000Z</published>
-    <updated>2022-02-14T05:15:53.909Z</updated>
+    <category term=".Net" scheme="https://blog.limit-dancer.com/categories/Net/"/>
     
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>helloworld</title>
-    <link href="https://blog.limit-dancer.com/2022/02/14/helloworld/"/>
-    <id>https://blog.limit-dancer.com/2022/02/14/helloworld/</id>
-    <published>2022-02-14T05:14:42.000Z</published>
-    <updated>2022-02-14T05:18:23.906Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/code.png" alt="code"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/code.png&quot; alt=&quot;code&quot;&gt;&lt;/p&gt;
-</summary>
-      
-    
-    
-    
-    <category term="test" scheme="https://blog.limit-dancer.com/categories/test/"/>
+    <category term="C#" scheme="https://blog.limit-dancer.com/categories/C/"/>
     
     
   </entry>

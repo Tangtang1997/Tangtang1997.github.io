@@ -4,6 +4,7 @@
     <title>ASP.NET Core 3 框架揭秘（上册）</title>
     <url>/2022/02/12/AspNetCore3-VolumeOne/</url>
     <content><![CDATA[<p><img src="https://wfqqreader-1252317822.image.myqcloud.com/cover/984/33380984/t6_33380984.jpg" alt="img"></p>
+<p>[TOC]</p>
 <h1 id="全新的开发体验"><a href="#全新的开发体验" class="headerlink" title="全新的开发体验"></a>全新的开发体验</h1><blockquote>
 <p>微软于2000年推出 <strong>.NET</strong> 战略，并于两年后推出第一个版本的 <strong>.NET Framework</strong> 和 <strong>IDE（Visual Studio</strong> <strong>.NET</strong> 2002， 后来改名为 <strong>Visual Studio</strong>）。如果读者是一个资深的 <strong>.NET</strong> 程序员，那么传统的 <strong>.NET</strong> 应用的开发方式应该已经深深的烙印在脑海中。**.NET Core** 带来了全新的开发体验，但开发方式的差异根本不足以为快速跨入 <strong>.NET Core</strong> 世界的门槛，因为 <strong>.NET Core</strong> 在很多应用开发方面比传统的 <strong>.NET Framework</strong> 更简单。为了消除尚未接触过 <strong>.NET Core</strong> 的读者对未知世界的恐惧，本章先介绍几个简单的 <strong>Hello World</strong> 应用，从而使读者提前了解 <strong>.NET Core</strong> 全新的开发体验</p>
 </blockquote>

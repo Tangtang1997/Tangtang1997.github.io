@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://blog.limit-dancer.com/images/AspNetCore3-VolumeOne/1-10.png">
 <meta property="og:image" content="https://blog.limit-dancer.com/images/AspNetCore3-VolumeOne/1-11.png">
 <meta property="article:published_time" content="2022-02-12T10:48:16.000Z">
-<meta property="article:modified_time" content="2022-02-27T11:01:02.104Z">
+<meta property="article:modified_time" content="2022-03-18T16:16:28.890Z">
 <meta property="article:author" content="Tangtang1997">
 <meta property="article:tag" content=".net core">
 <meta name="twitter:card" content="summary">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-02-27 19:01:02" itemprop="dateModified" datetime="2022-02-27T19:01:02+08:00">2022-02-27</time>
+                <time title="Modified: 2022-03-19 00:16:28" itemprop="dateModified" datetime="2022-03-19T00:16:28+08:00">2022-03-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,14 +259,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>12k</span>
+              <span>15k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>11 mins.</span>
+              <span>13 mins.</span>
             </span>
             <div class="post-description">ASP.NET Core 3 框架揭秘（上册）</div>
 
@@ -360,7 +360,15 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">   &#123;</span><br><span class="line">       <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">       &#123;</span><br><span class="line">           Host.CreateDefaultBuilder()</span><br><span class="line">               .ConfigureWebHostDefaults(webHostBuilder =&gt; webHostBuilder</span><br><span class="line">                   .Configure(app =&gt; app.Run(</span><br><span class="line">                           context =&gt; context.Response.WriteAsync(<span class="string">&quot;Hello World.&quot;</span>))))</span><br><span class="line">                   .Build()</span><br><span class="line">                   .Run();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="ASP-NET-Core-MVC应用"><a href="#ASP-NET-Core-MVC应用" class="headerlink" title="ASP.NET Core MVC应用"></a>ASP.NET Core MVC应用</h3><p>由于ASP.NET Core框架在本质上就是由服务器和中间件构建的消息处理管道，所以在它上面构建的应用开发框架都建立在某种类型的中间件上，整个ASP.NET Coer MVC开发框架就是建立在用来实现路由的EndpointRoutingMiddleware中间件和EndpointMiddleware中间件上的。ASP.NET Core MVC利用路由系统为它分发请求，并在此基础上实现针对目标Controller的激活、Action方法的选择和执行，以及最终对于执行结果的响应。在介绍的实例演示中，我们将对上面创建的ASP.NET Core进一步改造，使之变成一个MVC应用。</p>
-<h4 id="注册服务与中间件"><a href="#注册服务与中间件" class="headerlink" title="注册服务与中间件"></a>注册服务与中间件</h4>
+<h4 id="注册服务与中间件"><a href="#注册服务与中间件" class="headerlink" title="注册服务与中间件"></a>注册服务与中间件</h4><p><strong>ASP.NET Core</strong>框架内置了一个原生的依赖注入框架（第3章和第4章会对依赖注入进行系统而深入的介绍），该框架利用一个依赖注入容器提供管道在构建及请求处理过程中所需的服务，而这些服务需要在应用启动的时候被预先注册。对于<strong>ASP.NET Core</strong>框架来说，它在处理HTTP请求的过程中所需的一系列服务同样需要预先注册。对这个概念有了基本的了解之后，读者对如下所示的代码就容易理解了。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.AspNetCore.Builder;</span><br><span class="line"><span class="keyword">using</span> Microsoft.AspNetCore.Hosting;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Extensions.DependencyInjection;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Extensions.Hosting;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">helloworld</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Host.CreateDefaultBuilder()</span><br><span class="line">                .ConfigureWebHostDefaults(webHostBuilder =&gt; webHostBuilder</span><br><span class="line">                    .ConfigureServices(services =&gt; services</span><br><span class="line">                        .AddRouting()</span><br><span class="line">                        .AddControllersWithViews()</span><br><span class="line">                    )</span><br><span class="line">                    .Configure(app =&gt; app</span><br><span class="line">                        .UseRouting()</span><br><span class="line">                        .UseEndpoints(endpoints =&gt; endpoints.MapControllers())))</span><br><span class="line">                    .Build()</span><br><span class="line">                    .Run();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整个<strong>ASP.NET Core</strong>框架建立在<strong>EndpointRoutingMiddleware</strong>中间件和<strong>EndpointMiddleware</strong>中间件构建的路由系统上，这两个中间件采用“终结点（Endpoint）映射”的方式实现针对HTTP请求的路由（由这两个中间件构建的路由系统在第15章有详细介绍）。这里所谓的中介的可以视为应用程序提供的针对HTTP请求的处理器，这两个中间件通过预先设置的规则将其有某些特征的请求（如路径、HTTP方法等）映射到对应的终结点，进而实现路由的功能。对于一个MVC应用程序来说，我们可以将定义在Controller类型中的Action方法视为一个终结点，那么路由映射最终体现在HTTP请求与目标Action方法的映射上。</p>
+<p>上面的代码片段先后调用IApplicationBuilder接口的UseRouting方法与UseEndpoints方法注册了EndpointRoutingMiddleware中间件和EndpointMiddleware中间件。在调用UseEndpoints方法的时候，我们利用指定的<code>Action&lt;IEndpointRoutBuilder&gt;</code>委托对象调用了IEndpointRouteBuiler接口的MapControllers扩展方法，进而完成了针对定义在Controller类型中Action方法的映射。</p>
+<p>由于注册的中间件具有对其它服务的依赖，所以需要预先将这些服务注册到依赖注入框架中。依赖服务的注册是通过调用IWebHostBuilder接口的ConfigureServices方法完成的，该方法的参数类型为<code>Action&lt;IServiceCollection&gt;</code>，添加的服务注册就保存在IServiceCollection接口表示的集合中。在上面的演示程序中，两个中间件依赖的服务是通过调用IServiceConllection接口的AddRouting方法和AddControllersWithViews方法进行注册的。</p>
+<p>如下所示的HelloController是Controller类型。按照约定，所有的Controller类型名称都应该以“Controller”字符作为后缀。与之前版本的ASP.NET MVC不同，ASP.NET Core MVC下的Controller类型并不强制继承某个基类。我们在HelloController中定义了一个唯一的Action方法SayHello，该方法直接返回一个内容为“Hello World！”的字符串。该方法通过标准的HttpGetAttribute特性注册了一个模板为“/hello”的路由，意味着请求地址为“/hello”的GET请求最终会被路由到这个Action方法上，而该方法执行的结果将作为请求的响应内容，所以，启动该程序后使用浏览器访问地址<code>http://localhost:5000/hello</code>得到的输出结果如图1-7所示</p>
+<h4 id="引入视图"><a href="#引入视图" class="headerlink" title="引入视图"></a>引入视图</h4><p>上面这个程序并没有涉及视图，所以不是一个典型的MVC应用,下面对其作进一步改造。为了使HelloController具有视图呈现能力，我们让它派生于基类Controller。Action方法SayHello的返回类型被修改为IActionResult接口，它表示Action方法执行的结果。可以为该方法定义一个表示姓名的参数name，通过HttpGetAttribute特性注册的路由模板（“/hello/{name}”）</p>
+
     </div>
 
     
@@ -437,7 +445,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E6%96%B0%E7%9A%84%E5%BC%80%E5%8F%91%E4%BD%93%E9%AA%8C"><span class="nav-number">1.</span> <span class="nav-text">全新的开发体验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E5%B9%B3%E5%8F%B0"><span class="nav-number">1.1.</span> <span class="nav-text">Windows平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.1.</span> <span class="nav-text">构建开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%90%8D%E4%BB%A4%E8%A1%8C%E5%88%9B%E5%BB%BA-NET-Core%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用名令行创建.NET Core应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASP-NET-Core-%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">ASP.NET Core 应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">添加引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">注册服务器与中间件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9SDK"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">修改SDK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#launchSettings-json"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">launchSettings.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%8C%87%E5%AE%9AURL"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">显示指定URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ConfigureWebHosDefaults"><span class="nav-number">1.1.3.6.</span> <span class="nav-text">ConfigureWebHosDefaults</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASP-NET-Core-MVC%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.4.</span> <span class="nav-text">ASP.NET Core MVC应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%E4%B8%8E%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">注册服务与中间件</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E6%96%B0%E7%9A%84%E5%BC%80%E5%8F%91%E4%BD%93%E9%AA%8C"><span class="nav-number">1.</span> <span class="nav-text">全新的开发体验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E5%B9%B3%E5%8F%B0"><span class="nav-number">1.1.</span> <span class="nav-text">Windows平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.1.</span> <span class="nav-text">构建开发环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%90%8D%E4%BB%A4%E8%A1%8C%E5%88%9B%E5%BB%BA-NET-Core%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用名令行创建.NET Core应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASP-NET-Core-%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.3.</span> <span class="nav-text">ASP.NET Core 应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">添加引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">注册服务器与中间件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9SDK"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">修改SDK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#launchSettings-json"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">launchSettings.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%8C%87%E5%AE%9AURL"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">显示指定URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ConfigureWebHosDefaults"><span class="nav-number">1.1.3.6.</span> <span class="nav-text">ConfigureWebHosDefaults</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ASP-NET-Core-MVC%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.4.</span> <span class="nav-text">ASP.NET Core MVC应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%E4%B8%8E%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">注册服务与中间件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E8%A7%86%E5%9B%BE"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">引入视图</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -451,7 +459,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -463,7 +471,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -508,13 +516,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">16k</span>
+    <span title="Symbols count total">19k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">14 mins.</span>
+    <span title="Reading time total">17 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>

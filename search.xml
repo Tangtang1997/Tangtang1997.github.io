@@ -98,27 +98,6 @@
       </categories>
   </entry>
   <entry>
-    <title>记一次使用NPOI导出Excel</title>
-    <url>/2022/03/18/NPOI-JObject/</url>
-    <content><![CDATA[<p>事情是这样的，我接到了一个祖传项目里的需求，也不难，简单来说，就是出一个导出excel的接口，点击导出按钮导出一个excel。But，一想到将要面对的是祖传代码，那里边每一个接口每一个方法可都是公司一代又一代人智慧与激情的碰撞，作为菜🐔的我还是很胆怯。</p>
-<p>先看一下界面，它长这样，这是一个问卷列表，每一行都代表着一个问卷，需要导出该问卷下所有用户的答题记录。</p>
-<p><img src="/images/NPOI-JObject/1.png" alt="列表页"></p>
-<p>这里使用NPOI来导出excel，之前通常会传入一个List&lt;&gt;，然后通过反射获取对象的属性作为表头，然后再通过反射获取对象的属性的值，作为内容填充，具体代码就不写了，两个遍历完事。</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ExcelHelper</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MemoryStream <span class="title">ToExcel</span>(<span class="params">List&lt;ExeportModel&gt; list</span>)</span> </span><br><span class="line">    &#123;</span><br><span class="line">            <span class="keyword">var</span> workbook = <span class="keyword">new</span> HSSFWorkbook();</span><br><span class="line">            <span class="keyword">var</span> sheet1 = workbook.CreateSheet(<span class="string">&quot;Sheet1&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//绘制表头</span></span><br><span class="line">            <span class="comment">// 代码省略……</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//填充内容</span></span><br><span class="line">            <span class="comment">//代码省略……</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> memoryStream = <span class="keyword">new</span> MemoryStream();</span><br><span class="line">            workbook.Write(memoryStream);</span><br><span class="line">            memoryStream.Seek(<span class="number">0</span>, SeekOrigin.Begin);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> memoryStream;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>未完……</p>
-]]></content>
-      <categories>
-        <category>.Net Core</category>
-        <category>.Net</category>
-        <category>C#</category>
-      </categories>
-      <tags>
-        <tag>导出Excel</tag>
-        <tag>NPOI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AutoMapper使用</title>
     <url>/2022/02/14/automapper/</url>
     <content><![CDATA[<h2 id="引入NuGet包："><a href="#引入NuGet包：" class="headerlink" title="引入NuGet包："></a>引入NuGet包：</h2><p><code>AutoMapper.Extensions.Microsoft.DependencyInjection</code><br><code>Microsoft.Extensions.DependencyModel</code></p>
